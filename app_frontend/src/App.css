@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #aaccff; 
+  color: #ffffff;
+  margin: 0;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  align-items: flex-start;
+  image-rendering: pixelated; 
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
+  background-image: url('/images/morning.png'); 
+}
+
+body.bg-sunrise { background-image: url('/images/sunrise.png'); }
+body.bg-sunset { background-image: url('/images/sunset.png'); }
+
+body.bg-day-clear { background-image: url('/images/morning.png'); background-color: #70b5ff; }
+body.bg-day-clouds { background-image: url('/images/cloud.png'); background-color: #87CEEB; }
+body.bg-day-rain { background-image: url('/images/rain.png'); background-color: #778899; }
+body.bg-day-snow { background-image: url('/images/snow.png'); background-color: #B0E0E6; }
+body.bg-day-mist { background-image: url('/images/cloud.png'); background-color: #a9a9a9; } 
+body.bg-night-clear { background-image: url('/images/night.png'); background-color: #001030; }
+body.bg-day-default { background-color: #70b5ff; background-image: url('/images/morning.png');}
+body.bg-night-default { background-color: #001030; background-image: url('/images/night1.png');}
+
+
+#root {
+  width: 100%;
+  max-width: 650px;
+  margin-top: 30px;
+}
+
+.app-container {
+  background-color: #c6c6c6; 
+  border: 3px solid #555555; 
+  box-shadow: inset 0 0 0 3px #ffffff; 
+  padding: 20px;
+  border-radius: 0;
+  text-align: center;
+  color: #333333;
+}
+
+.app-container h1 {
+  color: #333333;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  text-shadow: 2px 2px #aaaaaa;
+}
+.app-container h1 .weather-emoji {
+    vertical-align: middle;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.search-container input {
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px 10px;
+  background-color: #373737;
+  border: 2px solid #000000;
+  box-shadow: inset 0 0 0 2px #8b8b8b;
+  border-radius: 0;
+  font-size: 0.8rem;
+  min-width: 180px;
+  color: #ffffff;
+}
+
+.search-container input::placeholder {
+  color: #bbbbbb;
+}
+
+.search-container button {
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px 15px;
+  background-color: #c6c6c6;
+  color: #373737;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ffffff #555555 #555555 #ffffff;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-align: center;
+  text-shadow: 1px 1px #ffffff;
+  transition: none;
+}
+
+.search-container button:hover {
+  background-color: #d1d1d1;
+}
+
+.search-container button:active {
+  border-color: #555555 #ffffff #ffffff #555555;
+  background-color: #bbbbbb;
+  text-shadow: 1px 1px #dddddd;
+}
+
+.search-container button:disabled {
+  background-color: #888888;
+  color: #bbbbbb;
+  border-color: #aaaaaa #444444 #444444 #aaaaaa;
+  text-shadow: 1px 1px #aaaaaa;
+  cursor: not-allowed;
+}
+
+.error-message {
+    color: #ff5555;
+    margin-top: 10px;
+    font-size: 0.8em;
+    text-shadow: 1px 1px #550000;
+}
+
+.weather-card {
+  background-color: #8b8b8b;
+  border: 2px solid #373737;
+  box-shadow: inset 0 0 0 2px #c6c6c6;
+  border-radius: 0;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: left;
+  color: #ffffff;
+}
+
+.weather-card h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+  font-weight: normal;
+  text-shadow: 2px 2px #373737;
+}
+
+.weather-card p {
+  margin: 5px 0;
+  font-size: 0.8rem;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.weather-card p strong {
+    color: inherit;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.weather-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  image-rendering: pixelated;
+  vertical-align: middle;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #eeeeee;
+}
+
+.favorites-container {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 3px solid #555555;
+}
+
+.favorites-container h3 {
+  color: #333333;
+  margin-bottom: 10px;
+  font-size: 1em;
+  text-shadow: 2px 2px #aaaaaa;
+}
+
+.favorites-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 5px;
+}
+
+.favorites-list li {
+  background-color: #8b8b8b;
+  padding: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #c6c6c6 #373737 #373737 #c6c6c6;
+  border-radius: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  font-size: 0.8rem;
+  min-height: 40px;
+}
+
+.favorites-list li:hover {
+  background-color: #9c9c9c;
+}
+
+.favorites-list span {
+  flex-grow: 1;
+  text-align: center;
+  text-shadow: 1px 1px #373737;
+  word-break: break-word;
+}
+
+.remove-fav-button {
+  font-family: 'Press Start 2P', cursive;
+  background: #c6c6c6;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ffffff #555555 #555555 #ffffff;
+  color: #ff5555;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: normal;
+  padding: 2px 4px;
+  margin-left: 5px;
+  text-shadow: 1px 1px #ffffff;
+  border-radius: 0;
+}
+
+.remove-fav-button:hover {
+  background-color: #d1d1d1;
+}
+.remove-fav-button:active {
+  border-color: #555555 #ffffff #ffffff #555555;
+  background-color: #bbbbbb;
+}
+
+@media (max-width: 600px) 
+{
+  .app-container {
+    padding: 10px;
+  }
+
+  .search-container input {
+    min-width: 120px;
+  }
+
+  .weather-card h2 {
+    font-size: 0.9em;
+  }
+
+  .weather-card p {
+    font-size: 0.7rem;
+  }
+
+  .favorites-list li {
+    font-size: 0.7rem;
+    min-height: 30px;
+  }
+}
